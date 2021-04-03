@@ -50,10 +50,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBModels\AspNetRoles.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\AspNetUserClaims.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\AspNetUserLogins.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\AspNetUsers.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\C__MigrationHistory.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\Orden.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\OrdenXProducto.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\Producto.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\Proveedor.cs">
+      <DependentUpon>SISCO.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBModels\SISCO.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SISCO.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels\SISCO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SISCO.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModels\SISCO.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -66,17 +98,21 @@
     <Content Include="basedatos.sql" />
     <Content Include="DBModels\SISCO.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SISCO.edmx</DependentUpon>
       <LastGenOutput>SISCO.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBModels\SISCO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SISCO.edmx</DependentUpon>
+      <LastGenOutput>SISCO.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DBModels\SISCO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SISCO.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="DBModels\SISCO.edmx.diagram">
       <DependentUpon>SISCO.edmx</DependentUpon>
     </None>
