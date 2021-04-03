@@ -47,3 +47,10 @@ GO
 
 ALTER TABLE [OrdenXProducto] ADD FOREIGN KEY ([ProductoId]) REFERENCES [Producto] ([Id])
 GO
+
+
+/* Después de haber agregado Identity */
+ALTER TABLE Orden 
+ADD UsuarioId UNIQUEIDENTIFIER
+FOREIGN KEY ([UsuarioId]) REFERENCES [AspNetUsers] ([Id])
+GO
