@@ -21,7 +21,7 @@ namespace SISCO.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("SiscoConexionIdentity", throwIfV1Schema: false)
         {
         }
 
