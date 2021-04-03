@@ -65,6 +65,10 @@ namespace SISCO.Web.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Nombre")]
+        public string FirstName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Correo Electrónico")]
         public string Email { get; set; }

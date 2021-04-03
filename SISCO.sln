@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SISCO.Web", "SISCO.Web\SISCO.Web.csproj", "{53617710-9AFA-4A4E-8BDC-EF52F1C65CDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SISCO.CapaDatos", "SISCO.CapaDatos\SISCO.CapaDatos.csproj", "{0112EAA1-AD7E-4C36-880C-BFC253AC0EC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SISCO.CapaLogica", "SISCO.CapaLogica\SISCO.CapaLogica.csproj", "{3310AAA7-1920-453E-8F88-9800581E7CF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{53617710-9AFA-4A4E-8BDC-EF52F1C65CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53617710-9AFA-4A4E-8BDC-EF52F1C65CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53617710-9AFA-4A4E-8BDC-EF52F1C65CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0112EAA1-AD7E-4C36-880C-BFC253AC0EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0112EAA1-AD7E-4C36-880C-BFC253AC0EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0112EAA1-AD7E-4C36-880C-BFC253AC0EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0112EAA1-AD7E-4C36-880C-BFC253AC0EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3310AAA7-1920-453E-8F88-9800581E7CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3310AAA7-1920-453E-8F88-9800581E7CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3310AAA7-1920-453E-8F88-9800581E7CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3310AAA7-1920-453E-8F88-9800581E7CF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
