@@ -69,6 +69,10 @@ namespace SISCO.Web.Models
         public string FirstName { get; set; }
 
         [Required]
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Correo Electrónico")]
         public string Email { get; set; }
