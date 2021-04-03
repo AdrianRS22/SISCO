@@ -43,5 +43,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SISCO.CapaDatos\SISCO.CapaDatos.csproj">
+      <Project>{0112eaa1-ad7e-4c36-880c-bfc253ac0ec5}</Project>
+      <Name>SISCO.CapaDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
