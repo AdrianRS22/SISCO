@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,6 +243,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Proveedores\MostrarProveedor.cshtml" />
+    <Content Include="Views\Proveedores\RegistrarProveedor.cshtml" />
+    <Content Include="Views\Proveedores\GetProveedor.cshtml" />
+    <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
+    <Content Include="Views\Proveedores\EliminarProveedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,13 +267,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SISCO.CapaDatos\SISCO.CapaDatos.csproj">
-      <Project>{0112eaa1-ad7e-4c36-880c-bfc253ac0ec5}</Project>
-      <Name>SISCO.CapaDatos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SISCO.CapaLogica\SISCO.CapaLogica.csproj">
       <Project>{3310aaa7-1920-453e-8f88-9800581e7cf4}</Project>
       <Name>SISCO.CapaLogica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SISCO.CapaNegocio\SISCO.CapaNegocio.csproj">
+      <Project>{b29139f5-3b99-4f9c-b7aa-343accefd023}</Project>
+      <Name>SISCO.CapaNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

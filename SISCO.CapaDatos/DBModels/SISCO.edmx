@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SISCOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SISCO.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -68,6 +68,8 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Orden">
           <Key>
             <PropertyRef Name="Id" />
@@ -114,7 +116,7 @@
           <Property Name="Activo" Type="bit" />
           <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Orden__UsuarioId__5224328E">
+        <Association Name="FK__Orden__UsuarioId__2E3BD7D3">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,7 +128,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Orden__4F47C5E3">
+        <Association Name="FK__OrdenXPro__Orden__0EC32C7A">
           <End Role="Orden" Type="Self.Orden" Multiplicity="0..1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,7 +140,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Produ__503BEA1C">
+        <Association Name="FK__OrdenXPro__Orden__16644E42">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="0..1" />
+          <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenXProducto">
+              <PropertyRef Name="OrdenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenXPro__Orden__1D114BD1">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="0..1" />
+          <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenXProducto">
+              <PropertyRef Name="OrdenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenXPro__Produ__0FB750B3">
           <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,7 +176,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__Provee__4E53A1AA">
+        <Association Name="FK__OrdenXPro__Produ__1758727B">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenXProducto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenXPro__Produ__1E05700A">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenXProducto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Provee__0DCF0841">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="ProveedorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Provee__15702A09">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="ProveedorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Provee__1C1D2798">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -218,7 +292,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SISCOModelStoreContainer">
+        <EntityContainer Name="SISCOStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -229,19 +303,43 @@
           <EntitySet Name="OrdenXProducto" EntityType="Self.OrdenXProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Orden__UsuarioId__5224328E" Association="Self.FK__Orden__UsuarioId__5224328E">
+          <AssociationSet Name="FK__Orden__UsuarioId__2E3BD7D3" Association="Self.FK__Orden__UsuarioId__2E3BD7D3">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Orden" EntitySet="Orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Orden__4F47C5E3" Association="Self.FK__OrdenXPro__Orden__4F47C5E3">
+          <AssociationSet Name="FK__OrdenXPro__Orden__0EC32C7A" Association="Self.FK__OrdenXPro__Orden__0EC32C7A">
             <End Role="Orden" EntitySet="Orden" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Produ__503BEA1C" Association="Self.FK__OrdenXPro__Produ__503BEA1C">
+          <AssociationSet Name="FK__OrdenXPro__Orden__16644E42" Association="Self.FK__OrdenXPro__Orden__16644E42">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenXPro__Orden__1D114BD1" Association="Self.FK__OrdenXPro__Orden__1D114BD1">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenXPro__Produ__0FB750B3" Association="Self.FK__OrdenXPro__Produ__0FB750B3">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__Provee__4E53A1AA" Association="Self.FK__Producto__Provee__4E53A1AA">
+          <AssociationSet Name="FK__OrdenXPro__Produ__1758727B" Association="Self.FK__OrdenXPro__Produ__1758727B">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenXPro__Produ__1E05700A" Association="Self.FK__OrdenXPro__Produ__1E05700A">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Provee__0DCF0841" Association="Self.FK__Producto__Provee__0DCF0841">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Provee__15702A09" Association="Self.FK__Producto__Provee__15702A09">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Provee__1C1D2798" Association="Self.FK__Producto__Provee__1C1D2798">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
@@ -266,7 +364,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SISCOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SISCO" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -326,7 +424,7 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__UsuarioId__5224328E" FromRole="AspNetUsers" ToRole="Orden" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__UsuarioId__2E3BD7D3" FromRole="AspNetUsers" ToRole="Orden" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Orden">
@@ -342,8 +440,8 @@
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
           <Property Name="UsuarioId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Orden__UsuarioId__5224328E" FromRole="Orden" ToRole="AspNetUsers" />
-          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Orden__4F47C5E3" FromRole="Orden" ToRole="OrdenXProducto" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Orden__UsuarioId__2E3BD7D3" FromRole="Orden" ToRole="AspNetUsers" />
+          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Orden__0EC32C7A" FromRole="Orden" ToRole="OrdenXProducto" />
         </EntityType>
         <EntityType Name="OrdenXProducto">
           <Key>
@@ -353,8 +451,8 @@
           <Property Name="OrdenId" Type="Guid" />
           <Property Name="ProductoId" Type="Guid" />
           <Property Name="Cantidad" Type="Int32" />
-          <NavigationProperty Name="Orden" Relationship="Self.FK__OrdenXPro__Orden__4F47C5E3" FromRole="OrdenXProducto" ToRole="Orden" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__OrdenXPro__Produ__503BEA1C" FromRole="OrdenXProducto" ToRole="Producto" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__OrdenXPro__Orden__0EC32C7A" FromRole="OrdenXProducto" ToRole="Orden" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__OrdenXPro__Produ__0FB750B3" FromRole="OrdenXProducto" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -366,8 +464,8 @@
           <Property Name="Precio" Type="Decimal" Precision="11" Scale="2" />
           <Property Name="Activo" Type="Boolean" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Produ__503BEA1C" FromRole="Producto" ToRole="OrdenXProducto" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Producto__Provee__4E53A1AA" FromRole="Producto" ToRole="Proveedor" />
+          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Produ__0FB750B3" FromRole="Producto" ToRole="OrdenXProducto" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Producto__Provee__0DCF0841" FromRole="Producto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -380,7 +478,7 @@
           <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Provee__4E53A1AA" FromRole="Proveedor" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Provee__0DCF0841" FromRole="Proveedor" ToRole="Producto" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -410,7 +508,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orden__UsuarioId__5224328E">
+        <Association Name="FK__Orden__UsuarioId__2E3BD7D3">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -422,7 +520,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Orden__4F47C5E3">
+        <Association Name="FK__OrdenXPro__Orden__0EC32C7A">
           <End Role="Orden" Type="Self.Orden" Multiplicity="0..1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -434,7 +532,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Produ__503BEA1C">
+        <Association Name="FK__OrdenXPro__Produ__0FB750B3">
           <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -446,7 +544,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__Provee__4E53A1AA">
+        <Association Name="FK__Producto__Provee__0DCF0841">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -480,19 +578,19 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orden__UsuarioId__5224328E" Association="Self.FK__Orden__UsuarioId__5224328E">
+          <AssociationSet Name="FK__Orden__UsuarioId__2E3BD7D3" Association="Self.FK__Orden__UsuarioId__2E3BD7D3">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Orden" EntitySet="Orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Orden__4F47C5E3" Association="Self.FK__OrdenXPro__Orden__4F47C5E3">
+          <AssociationSet Name="FK__OrdenXPro__Orden__0EC32C7A" Association="Self.FK__OrdenXPro__Orden__0EC32C7A">
             <End Role="Orden" EntitySet="Orden" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Produ__503BEA1C" Association="Self.FK__OrdenXPro__Produ__503BEA1C">
+          <AssociationSet Name="FK__OrdenXPro__Produ__0FB750B3" Association="Self.FK__OrdenXPro__Produ__0FB750B3">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__Provee__4E53A1AA" Association="Self.FK__Producto__Provee__4E53A1AA">
+          <AssociationSet Name="FK__Producto__Provee__0DCF0841" Association="Self.FK__Producto__Provee__0DCF0841">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
@@ -506,9 +604,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SISCOModelStoreContainer" CdmEntityContainer="SISCOContext">
+        <EntityContainerMapping StorageEntityContainer="SISCOStoreContainer" CdmEntityContainer="SISCOContext">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SISCOModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="SISCO.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -518,7 +616,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="SISCOModel.AspNetRoles">
+            <EntityTypeMapping TypeName="SISCO.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -526,7 +624,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="SISCOModel.AspNetUserClaims">
+            <EntityTypeMapping TypeName="SISCO.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -536,7 +634,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="SISCOModel.AspNetUserLogins">
+            <EntityTypeMapping TypeName="SISCO.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -545,7 +643,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="SISCOModel.AspNetUsers">
+            <EntityTypeMapping TypeName="SISCO.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -565,7 +663,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orden">
-            <EntityTypeMapping TypeName="SISCOModel.Orden">
+            <EntityTypeMapping TypeName="SISCO.Orden">
               <MappingFragment StoreEntitySet="Orden">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NumeroOrden" ColumnName="NumeroOrden" />
@@ -580,7 +678,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrdenXProducto">
-            <EntityTypeMapping TypeName="SISCOModel.OrdenXProducto">
+            <EntityTypeMapping TypeName="SISCO.OrdenXProducto">
               <MappingFragment StoreEntitySet="OrdenXProducto">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrdenId" ColumnName="OrdenId" />
@@ -590,7 +688,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="SISCOModel.Producto">
+            <EntityTypeMapping TypeName="SISCO.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
@@ -602,7 +700,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
-            <EntityTypeMapping TypeName="SISCOModel.Proveedor">
+            <EntityTypeMapping TypeName="SISCO.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -614,7 +712,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SISCOModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SISCO.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
@@ -639,7 +737,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

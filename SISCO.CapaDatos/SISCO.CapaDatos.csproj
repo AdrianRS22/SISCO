@@ -50,42 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBModels\AspNetRoles.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\AspNetUserClaims.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\AspNetUserLogins.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\AspNetUsers.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\C__MigrationHistory.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\Orden.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\OrdenXProducto.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\Producto.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\Proveedor.cs">
-      <DependentUpon>SISCO.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBModels\SISCO.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SISCO.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModels\SISCO.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SISCO.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModels\SISCO.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -93,6 +61,7 @@
       <DependentUpon>SISCO.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorDatos.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="basedatos.sql" />
@@ -100,11 +69,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SISCO.edmx</DependentUpon>
       <LastGenOutput>SISCO.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DBModels\SISCO.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SISCO.edmx</DependentUpon>
-      <LastGenOutput>SISCO.cs</LastGenOutput>
+      <CustomToolNamespace>SISCO.CapaLogica</CustomToolNamespace>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -121,5 +86,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SISCO.CapaLogica\SISCO.CapaLogica.csproj">
+      <Project>{3310aaa7-1920-453e-8f88-9800581e7cf4}</Project>
+      <Name>SISCO.CapaLogica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

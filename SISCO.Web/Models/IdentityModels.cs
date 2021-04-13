@@ -30,7 +30,7 @@ namespace SISCO.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("SiscoConexionIdentity", throwIfV1Schema: false)
+            : base("local1", throwIfV1Schema: false)
         {
         }
 
