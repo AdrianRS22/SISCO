@@ -15,9 +15,9 @@ namespace SISCO.CapaDatos.DBModels
     public partial class OrdenXProducto
     {
         public System.Guid Id { get; set; }
-        public Nullable<System.Guid> OrdenId { get; set; }
-        public Nullable<System.Guid> ProductoId { get; set; }
-        public Nullable<int> Cantidad { get; set; }
+        public System.Guid OrdenId { get; set; }
+        public System.Guid ProductoId { get; set; }
+        public int Cantidad { get; set; }
     
         public virtual Orden Orden { get; set; }
         public virtual Producto Producto { get; set; }

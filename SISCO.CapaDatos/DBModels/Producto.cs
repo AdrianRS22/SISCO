@@ -21,11 +21,12 @@ namespace SISCO.CapaDatos.DBModels
         }
     
         public System.Guid Id { get; set; }
-        public Nullable<System.Guid> ProveedorId { get; set; }
+        public System.Guid ProveedorId { get; set; }
         public string Nombre { get; set; }
-        public Nullable<decimal> Precio { get; set; }
-        public Nullable<bool> Activo { get; set; }
-        public Nullable<System.DateTime> FechaCreacion { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdenXProducto> OrdenXProducto { get; set; }

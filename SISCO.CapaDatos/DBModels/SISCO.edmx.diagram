@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4099f98c0ba9477fb69f2cac11e0488f" Name="Diagram1">
+      <Diagram DiagramId="907306a26a6f4ca1953c9dda107202e4" Name="Diagram1">
         <EntityTypeShape EntityType="SISCOModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SISCOModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SISCOModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
@@ -16,10 +16,10 @@
         <EntityTypeShape EntityType="SISCOModel.Proveedor" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
         <AssociationConnector Association="SISCOModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="SISCOModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="SISCOModel.FK__Orden__UsuarioId__5224328E" ManuallyRouted="false" />
-        <AssociationConnector Association="SISCOModel.FK__OrdenXPro__Orden__4F47C5E3" ManuallyRouted="false" />
-        <AssociationConnector Association="SISCOModel.FK__OrdenXPro__Produ__503BEA1C" ManuallyRouted="false" />
-        <AssociationConnector Association="SISCOModel.FK__Producto__Provee__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="SISCOModel.FK__Orden__UsuarioId__02C769E9" ManuallyRouted="false" />
+        <AssociationConnector Association="SISCOModel.FK__OrdenXPro__Orden__00DF2177" ManuallyRouted="false" />
+        <AssociationConnector Association="SISCOModel.FK__OrdenXPro__Produ__01D345B0" ManuallyRouted="false" />
+        <AssociationConnector Association="SISCOModel.FK__Producto__Provee__7FEAFD3E" ManuallyRouted="false" />
         <AssociationConnector Association="SISCOModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

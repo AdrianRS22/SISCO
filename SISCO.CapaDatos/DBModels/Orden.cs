@@ -25,9 +25,9 @@ namespace SISCO.CapaDatos.DBModels
         public string Provincia { get; set; }
         public string Canton { get; set; }
         public string Direccion { get; set; }
-        public Nullable<decimal> Costo { get; set; }
+        public decimal Costo { get; set; }
         public string Estado { get; set; }
-        public Nullable<System.DateTime> FechaCreacion { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
         public string UsuarioId { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
