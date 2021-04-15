@@ -72,7 +72,7 @@ namespace SISCO.CapaLogica
                 proveedor.Direccion = modelo.Direccion;
                 proveedor.Correo = modelo.Correo;
                 proveedor.Telefono = modelo.Telefono;
-                proveedor.Activo = modelo.Activo.Equals("Sí");
+                proveedor.Activo = modelo.Activo.Equals("Activo");
 
                 context.SaveChanges();
             }
