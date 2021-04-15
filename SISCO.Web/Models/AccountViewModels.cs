@@ -48,12 +48,12 @@ namespace SISCO.Web.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
         [Display(Name = "Correo Electrónico")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "El correo electrónico no es válido")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La contraseña es requerida")]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
@@ -64,21 +64,21 @@ namespace SISCO.Web.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "El nombre es requerido")]
         [Display(Name = "Nombre")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El apellido es requerido")]
         [Display(Name = "Apellido")]
         public string LastName { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
+        [EmailAddress(ErrorMessage = "El correo electrónico no es válido")]
         [Display(Name = "Correo Electrónico")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        [StringLength(100, ErrorMessage = "El número de caracteres de la {0} deben ser al menos {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
