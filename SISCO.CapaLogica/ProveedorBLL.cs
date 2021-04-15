@@ -10,7 +10,7 @@ namespace SISCO.CapaLogica
     public class ProveedorBLL
     {
 
-        public void Add(ProveedorViewModel modelo)
+        public static void Add(ProveedorViewModel modelo)
         {
             using(var context = new SISCOContext())
             {
@@ -29,7 +29,7 @@ namespace SISCO.CapaLogica
             }
         }
 
-        public ProveedorViewModel Fetch(Guid id)
+        public static ProveedorViewModel Fetch(Guid id)
         {
             ProveedorViewModel result = null;
 
@@ -46,24 +46,23 @@ namespace SISCO.CapaLogica
             return result;
         }
 
-        public List<ProveedorViewModel> Fetch()
+        public static IEnumerable<ProveedorViewModel> Fetch()
         {
-            List<ProveedorViewModel> result = new List<ProveedorViewModel>();
-
             using (var context = new SISCOContext())
             {
-                var proveedorList = context.Proveedor.Where(x => x.Activo).AsEnumerable();
-
-                if(proveedorList != null)
-                {
-                    result = proveedorList.Select(x => new ProveedorViewModel(x)).ToList();
-                }
+                return context.Proveedor.Where(x => x.Activo).ToList().Select(x => new ProveedorViewModel(x));
             }
-
-            return result;
         }
 
-        public void Update(ProveedorViewModel modelo)
+        public static IEnumerable<ProveedorViewModel> FetchAll()
+        {
+            using (var context = new SISCOContext())
+            {
+                return context.Proveedor.ToList().Select(x => new ProveedorViewModel(x));
+            }
+        }
+
+        public static void Update(ProveedorViewModel modelo)
         {
             using(var context = new SISCOContext())
             {
@@ -76,20 +75,6 @@ namespace SISCO.CapaLogica
                 proveedor.Activo = modelo.Activo.Equals("Sí");
 
                 context.SaveChanges();
-            }
-        }
-
-        public void Delete(Guid id)
-        {
-            using(var context = new SISCOContext())
-            {
-                var proveedor = context.Proveedor.FirstOrDefault(x => x.Id.Equals(id));
-
-                if(proveedor != null)
-                {
-                    proveedor.Activo = false;
-                    context.SaveChanges();
-                }
             }
         }
     }

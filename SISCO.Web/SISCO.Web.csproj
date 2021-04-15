@@ -243,7 +243,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Proveedor\List.cshtml" />
+    <Content Include="Views\Proveedor\Lista.cshtml" />
+    <Content Include="Views\Proveedor\Agregar.cshtml" />
+    <Content Include="Views\Proveedor\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
