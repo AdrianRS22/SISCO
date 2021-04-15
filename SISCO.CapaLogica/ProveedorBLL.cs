@@ -48,20 +48,16 @@ namespace SISCO.CapaLogica
 
         public List<ProveedorViewModel> Fetch()
         {
-            List<ProveedorViewModel> result = null;
+            List<ProveedorViewModel> result = new List<ProveedorViewModel>();
 
             using (var context = new SISCOContext())
             {
-                result = context.Proveedor.Where(x => x.Activo).Select(s => new ProveedorViewModel
+                var proveedorList = context.Proveedor.Where(x => x.Activo).AsEnumerable();
+
+                if(proveedorList != null)
                 {
-                   Id = s.Id,
-                   Nombre = s.Nombre,
-                   Direccion = s.Nombre,
-                   Correo = s.Correo,
-                   Telefono = s.Telefono,
-                   Activo = s.Activo,
-                   FechaCreacion = s.FechaCreacion
-                }).ToList();
+                    result = proveedorList.Select(x => new ProveedorViewModel(x)).ToList();
+                }
             }
 
             return result;
@@ -77,7 +73,7 @@ namespace SISCO.CapaLogica
                 proveedor.Direccion = modelo.Direccion;
                 proveedor.Correo = modelo.Correo;
                 proveedor.Telefono = modelo.Telefono;
-                proveedor.Activo = modelo.Activo;
+                proveedor.Activo = modelo.Activo.Equals("Sí");
 
                 context.SaveChanges();
             }

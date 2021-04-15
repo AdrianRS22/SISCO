@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using SISCO.CapaDatos.ViewModels;
+using SISCO.CapaLogica;
 
 namespace SISCO.Web.Controllers
 {
     public class ProveedorController : Controller
     {
-        // GET: Proveedor
-        public ActionResult Index()
+        private readonly ProveedorBLL proveedorLogica = new ProveedorBLL();
+
+        public ActionResult List()
         {
-            return View();
+            var listaProveedores = proveedorLogica.Fetch();
+            return View(listaProveedores);
         }
     }
 }

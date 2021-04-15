@@ -25,6 +25,17 @@ namespace SISCO.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
+
+
+            //DataTables
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                "~/Content/dataTables.bootstrap4.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                "~/Scripts/jquery.dataTables.min.js",
+                "~/Scripts/dataTables.bootstrap4.min.css"
+                ));
         }
     }
 }

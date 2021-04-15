@@ -17,7 +17,7 @@ namespace SISCO.CapaDatos.ViewModels
             Direccion = proveedor.Direccion;
             Correo = proveedor.Correo;
             Telefono = proveedor.Telefono;
-            Activo = proveedor.Activo;
+            Activo = proveedor.Activo ? "Sí" : "No";
             FechaCreacion = proveedor.FechaCreacion;
         }
 
@@ -26,7 +26,7 @@ namespace SISCO.CapaDatos.ViewModels
         public string Direccion { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-        public bool Activo { get; set; }
+        public string Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
     }
 }
