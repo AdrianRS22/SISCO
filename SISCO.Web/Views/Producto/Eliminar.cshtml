@@ -1,0 +1,15 @@
+﻿@model SISCO.CapaDatos.ViewModels.ProveedorViewModel
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Estas seguro que quieres eliminar esto?</h3>
+
+@using (Html.BeginForm("EliminarConfirmacion", "Producto",FormMethod.Post))
+{
+    <div class="form-actions no-color">
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        @Html.ActionLink("Regresar a la lista", "Lista")
+    </div>
+}

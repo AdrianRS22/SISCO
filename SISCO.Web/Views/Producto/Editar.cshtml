@@ -1,0 +1,87 @@
+﻿@model SISCO.CapaDatos.ViewModels.ProductoViewModel
+@using SISCO.CapaDatos.ViewModels
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IEnumerable<ProveedorViewModel> Lista = (IEnumerable<ProveedorViewModel>)ViewBag.data;
+}
+
+<h2>Editar Producto</h2>
+
+
+<div class="container-fluid mt-3">
+    <div class="card contenedorPrincipal">
+        <h2 class="text-center p-2">@ViewBag.Title</h2>
+        <hr />
+
+        <div class="container-fluid">
+            @using (Html.BeginForm("Editar", "Producto", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProveedorId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" name="ProveedorId" id="ProveedorId">
+                            <option selected="true" disabled="disabled">Seleccione el proveedor</option>
+                            @foreach (var x in Lista)
+                            {    
+                                <option value="@x.Id">@x.Nombre</option>
+                            }
+                        </select>    
+                 </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Activo, new SelectList(
+                        new List<Object>
+                        {
+                            new { value = "Inactivo", text = "Inactivo"},
+                            new { value = "Activo", text = "Activo"}
+                        },
+                        "value",
+                        "text",
+                        Model.Activo
+                    ), "Selecciona el estado", new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Editar" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="align-self-center">
+            @Html.ActionLink("Regresar", "Lista", new { area = "" }, new { @class = "btn btn-primary mb-2" })
+        </div>
+    </div>
+</div>

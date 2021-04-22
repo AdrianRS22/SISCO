@@ -1,0 +1,99 @@
+﻿@model IEnumerable<SISCO.CapaDatos.ViewModels.ProductoViewModel>
+@using SISCO.CapaDatos.DBModels
+
+@{
+    ViewBag.Title = "Lista de productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+  
+}
+
+
+<div class="container-fluid mt-3">
+    <div class="card contenedorPrincipal">
+        <h2 class="text-center p-2">@ViewBag.Title</h2>
+        <hr />
+        <div class="container">
+
+            @Html.ActionLink("Agregar", "Agregar", "", new { @class = "btn btn-success mb-2" })
+          
+            <table class="table table-striped table-bordered p-3" width="100%">
+             
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProveedorId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Precio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Activo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaCreacion)
+                        </th>
+                        <th colspan="3">
+                            Acción
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>                                                                     
+                                    @using (var Context = new SISCOContext())
+                                    {
+                                        List<string> nombre = Context.Proveedor.Where(x => x.Id == item.ProveedorId).
+                                             Select(x => x.Nombre).ToList();
+
+                                      
+                                            foreach (var data in nombre)
+                                            {
+                                                <td>
+                                                    @data
+                                                </td>
+
+                                            }
+      
+                                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                               $@Html.DisplayFor(modelItem => item.Precio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Activo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaCreacion)
+                            </td>
+                            <td>
+                                <div class="dropdown show">
+                                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Acción
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "dropdown-item" })
+                                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new {@class = "dropdown-item" })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
