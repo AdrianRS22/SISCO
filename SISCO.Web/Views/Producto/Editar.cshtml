@@ -1,18 +1,18 @@
 ﻿@model SISCO.CapaDatos.ViewModels.ProductoViewModel
+@using SISCO.CapaDatos.ViewModels
 
 @{
-    ViewBag.Title = "Agregar Producto";
+    ViewBag.Title = "Editar Producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="container-fluid mt-3">
-    <div class="card contenedorPrincipal p-3">
+    <div class="card contenedorPrincipal">
         <h2 class="text-center p-2">@ViewBag.Title</h2>
         <hr />
 
         <div class="container-fluid">
-            @using (Html.BeginForm("Agregar", "Producto", FormMethod.Post))
+            @using (Html.BeginForm("Editar", "Producto", FormMethod.Post))
             {
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -34,22 +34,38 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Descripcion, 4, 20, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Activo, new SelectList(
+                        new List<Object>
+                        {
+                            new { value = "Inactivo", text = "Inactivo"},
+                            new { value = "Activo", text = "Activo"}
+                        },
+                        "value",
+                        "text",
+                        Model.Activo
+                    ), "Selecciona el estado", new { @class = "form-control" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Agregar" class="btn btn-success" />
+                        <input type="submit" value="Editar" class="btn btn-success" />
                     </div>
                 </div>
             }
@@ -60,4 +76,3 @@
         </div>
     </div>
 </div>
-

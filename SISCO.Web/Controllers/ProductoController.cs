@@ -51,15 +51,16 @@ namespace SISCO.Web.Controllers
             {
                 return HttpNotFound();
             }
+
             var listaProveedor = ProveedorBLL.Fetch();
-            ViewBag.listaProveedor = new SelectList(listaProveedor, "Id", "Nombre");
+            ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre", producto.Id);
             return View(producto);
         }
 
         [HttpPost]
         public ActionResult Editar(ProductoViewModel modelo)
         {
-            if (ModelState.IsValid)
+            if (modelo.IsValid())
             {
                 try
                 {
@@ -68,7 +69,7 @@ namespace SISCO.Web.Controllers
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError("", "Ocurrio un error al editar");
+                    ModelState.AddModelError(string.Empty, "Por favor selecciona el estado del producto");
                 }
             }
 
