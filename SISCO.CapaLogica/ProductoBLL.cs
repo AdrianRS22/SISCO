@@ -39,10 +39,25 @@ namespace SISCO.CapaLogica
 
                 if (producto != null)
                 {
-                    /*
-                    result = new ProductoViewModel(producto);
-                    result.Proveedor = new ProveedorViewModel(producto.Proveedor);
-                    */
+                    result = new ProductoViewModel {
+                        Id = producto.Id,
+                        Nombre = producto.Nombre,
+                        Descripcion = producto.Descripcion,
+                        Precio = producto.Precio,
+                        Activo = producto.Activo ? "Activo" : "Inactivo",
+                        FechaCreacion = producto.FechaCreacion
+                    };
+
+                    result.Proveedor = new ProveedorViewModel
+                    {
+                        Id = producto.Proveedor.Id,
+                        Nombre = producto.Proveedor.Nombre,
+                        Direccion = producto.Proveedor.Direccion,
+                        Correo = producto.Proveedor.Correo,
+                        Telefono = producto.Proveedor.Telefono,
+                        Activo = producto.Proveedor.Activo ? "Activo" : "Inactivo",
+                        FechaCreacion = producto.Proveedor.FechaCreacion
+                    };
                 }
             }
 
@@ -54,34 +69,6 @@ namespace SISCO.CapaLogica
             using (var context = new SISCOContext())
             {
                 return context.Producto.Include("Proveedor").Where(x => x.Activo).ToList().Select(s => new ProductoViewModel
-                {
-                    Id = s.Id,
-                    //Proveedor = new ProveedorViewModel(s.Proveedor),
-                    Nombre = s.Nombre,
-                    Descripcion = s.Descripcion,
-                    Precio = s.Precio,
-                    Activo = s.Activo ? "Activo" : "Inactivo",
-                    FechaCreacion = s.FechaCreacion
-                });
-            }
-        }
-
-        public static List<ProductoViewModel> FetchAll()
-        {
-            using (var context = new SISCOContext())
-            {
-                //var result = context.Producto.Include("Proveedor").ToList().Select(s => new ProductoViewModel
-                //{
-                //    Id = s.Id,
-                //    Proveedor = new ProveedorViewModel(s.Proveedor),
-                //    Nombre = s.Nombre,
-                //    Descripcion = s.Descripcion,
-                //    Precio = s.Precio,
-                //    Activo = s.Activo ? "Activo" : "Inactivo",
-                //    FechaCreacion = s.FechaCreacion
-                //}).AsEnumerable();
-
-                var result = context.Producto.Include("Proveedor").Select(s => new ProductoViewModel
                 {
                     Id = s.Id,
                     Nombre = s.Nombre,
@@ -101,7 +88,33 @@ namespace SISCO.CapaLogica
                         FechaCreacion = s.Proveedor.FechaCreacion
                     }
                 }).ToList();
-                return result;
+            }
+        }
+
+        public static List<ProductoViewModel> FetchAll()
+        {
+            using (var context = new SISCOContext())
+            {
+                return context.Producto.Include("Proveedor").Select(s => new ProductoViewModel
+                {
+                    Id = s.Id,
+                    Nombre = s.Nombre,
+                    Descripcion = s.Descripcion,
+                    Precio = s.Precio,
+                    Activo = s.Activo ? "Activo" : "Inactivo",
+                    FechaCreacion = s.FechaCreacion,
+
+                    Proveedor = new ProveedorViewModel
+                    {
+                        Id = s.Proveedor.Id,
+                        Nombre = s.Proveedor.Nombre,
+                        Direccion = s.Proveedor.Direccion,
+                        Correo = s.Proveedor.Correo,
+                        Telefono = s.Proveedor.Telefono,
+                        Activo = s.Proveedor.Activo ? "Activo" : "Inactivo",
+                        FechaCreacion = s.Proveedor.FechaCreacion
+                    }
+                }).ToList();
             }
         }
 

@@ -10,6 +10,7 @@ namespace SISCO.CapaDatos.ViewModels
 
         }
 
+        [Required(ErrorMessage = "El proveedor es requerido")]
         public Guid Id { get; set; }
         [Required(ErrorMessage = "El nombre es requerido")]
         [Display(Name = "Nombre del Proveedor")]

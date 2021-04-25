@@ -17,24 +17,22 @@ namespace SISCO.Web.Controllers
         public ActionResult Agregar()
         {
             var listaProveedor = ProveedorBLL.Fetch();
-            ViewBag.listaProveedor = listaProveedor;
+            ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre");
             return View();
         }
 
         [HttpPost]
         public ActionResult Agregar(ProductoViewModel modelo)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                try
-                {
-                    ProductoBLL.Add(modelo);
-                    return RedirectToAction("Lista");
-                }
-                catch (Exception)
-                {
-                    ModelState.AddModelError("", "Ocurrio un error al registrar");
-                }
+                ProductoBLL.Add(modelo);
+                return RedirectToAction("Lista");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Ocurrio un error al agregar el producto");
             }
 
             return View();
@@ -54,7 +52,7 @@ namespace SISCO.Web.Controllers
                 return HttpNotFound();
             }
             var listaProveedor = ProveedorBLL.Fetch();
-            ViewBag.listaProveedor = listaProveedor;
+            ViewBag.listaProveedor = new SelectList(listaProveedor, "Id", "Nombre");
             return View(producto);
         }
 

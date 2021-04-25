@@ -24,17 +24,14 @@ namespace SISCO.Web.Controllers
         [HttpPost]
         public ActionResult Agregar(ProveedorViewModel modelo)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    ProveedorBLL.Add(modelo);
-                    return RedirectToAction("Lista");
-                }
-                catch (Exception)
-                {
-                    ModelState.AddModelError(string.Empty, "Ocurrio un error al agregar un proveedor");
-                }
+                ProveedorBLL.Add(modelo);
+                return RedirectToAction("Lista");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Ocurrio un error al agregar un proveedor");
             }
 
             return View();
@@ -59,23 +56,21 @@ namespace SISCO.Web.Controllers
         [HttpPost]
         public ActionResult Editar(ProveedorViewModel modelo)
         {
-            if (ModelState.IsValid)
+            if (modelo.IsValid())
             {
                 try
                 {
-                    if (modelo.IsValid())
-                    {
-                        ProveedorBLL.Update(modelo);
-                        return RedirectToAction("Lista");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Por favor selecciona el estado del proveedor");
-                    }
-                }catch(Exception)
+                    ProveedorBLL.Update(modelo);
+                    return RedirectToAction("Lista");
+                }
+                catch(Exception)
                 {
                     ModelState.AddModelError(string.Empty, "Ocurrio un error al editar el proveedor");
                 }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Por favor selecciona el estado del proveedor");
             }
 
             return View(modelo);
