@@ -1,18 +1,12 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using System.Security.Claims;
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
     {
         @Html.AntiForgeryToken()
-
-        <div class="row">
-            <div class="col-6">
-                @Html.ActionLink("Bienvenido " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "list-group-item d-inline-block w-100" })
-            </div>
-            <div class="col-6">
-                <a class="list-group-item d-inline-block w-100 text-center" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-            </div>
-        </div>
+        @Html.ActionLink("Bienvenido " + ((ClaimsIdentity)User.Identity).FindFirst("FullName").Value  + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "list-group-item d-inline-block w-100" })
+        <a class="list-group-item d-inline-block w-100" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
     }
 }
 else

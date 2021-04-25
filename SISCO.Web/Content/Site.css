@@ -11,7 +11,7 @@ body {
 
 a {
     color: inherit;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .contenedorPrincipal {
@@ -56,7 +56,6 @@ textarea {
     #sidebar .list-group-item {
         background-color: #1A237E !important;
         color: #EEE;
-        border: 1px solid #000066 !important;
         white-space: nowrap;
     }
 
