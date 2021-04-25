@@ -53,12 +53,15 @@ textarea {
     }
 
     #sidebar .list-group-item {
-        border-radius: 0;
-        background-color: #1e2894 !important;
+        background-color: #1A237E !important;
         color: #EEE;
-        border-color: #262626 !important;
+        border: 1px solid #000066 !important;
         white-space: nowrap;
     }
+
+        #sidebar .list-group-item:hover {
+            background-color: #000066 !important;
+        }
 
         #sidebar .list-group-item:not(.collapsed) {
             background-color: #161616;
