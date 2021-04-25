@@ -5,8 +5,17 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ActionLink("Bienvenido " + ((ClaimsIdentity)User.Identity).FindFirst("FullName").Value  + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "list-group-item d-inline-block w-100" })
-        <a class="list-group-item d-inline-block w-100" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+
+        <li class="nav-item dropdown">
+            <a class="list-group-item d-inline-block w-100" href="#" id="usuarioInfoDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bienvenido @(((ClaimsIdentity)User.Identity).FindFirst("FullName").Value)!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="usuarioInfoDropDown">
+                <a class="dropdown-item" href="#">Editar Perfil</a>
+                @Html.ActionLink("Cambiar contraseña", "ChangePassword", "Manage", "", new { @class = "dropdown-item" })
+                <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+            </div>
+        </li>
     }
 }
 else

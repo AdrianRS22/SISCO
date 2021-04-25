@@ -41,20 +41,20 @@ namespace SISCO.Web.Models
 
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "La contraseña actual es requerida")]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Contraseña Actual")]
         public string OldPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La nueva contraseña es requerida")]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nueva Contraseña")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
+        [Display(Name = "Confirmar nueva contraseña")]
+        [Compare("NewPassword", ErrorMessage = "La nueva contraseña y la confirmación de la contraseña no coinciden.")]
         public string ConfirmPassword { get; set; }
     }
 

@@ -215,8 +215,9 @@ namespace SISCO.Web.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(ManageMessageId? mensaje)
         {
+            ViewBag.EstadoMensaje = mensaje == ManageMessageId.ChangePasswordSuccess ? "La contraseña se ha cambiado correctamente" : "";
             return View();
         }
 
@@ -238,7 +239,7 @@ namespace SISCO.Web.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("ChangePassword", new { Mensaje = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
             return View(model);

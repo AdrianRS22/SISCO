@@ -68,8 +68,6 @@ textarea {
         }
 
     #sidebar .list-group .list-group-item[aria-expanded="false"]::after {
-        content: "\f0d7";
-        font-family: FontAwesome;
         display: inline;
         text-align: right;
         padding-left: 5px;
