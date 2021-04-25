@@ -58,6 +58,22 @@ namespace SISCO.Web.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangeUserDetailsViewModel
+    {
+        [Required(ErrorMessage = "El nombre es requerido")]
+        [MaxLength(50, ErrorMessage = "El nombre no puede tener más de {1} caracteres")]
+        [Display(Name = "Nombre")]
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "El apellido es requerido")]
+        [MaxLength(50, ErrorMessage = "El apellido no puede tener más de {1} caracteres")]
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; }
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
+        [EmailAddress(ErrorMessage = "El correo electrónico no es válido")]
+        [Display(Name = "Correo Electrónico")]
+        public string Email { get; set; }
+    }
+
     public class AddPhoneNumberViewModel
     {
         [Required]

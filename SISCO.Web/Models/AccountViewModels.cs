@@ -65,10 +65,12 @@ namespace SISCO.Web.Models
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "El nombre es requerido")]
+        [MaxLength(50, ErrorMessage = "El nombre no puede tener más de {1} caracteres")]
         [Display(Name = "Nombre")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "El apellido es requerido")]
+        [MaxLength(50, ErrorMessage = "El apellido no puede tener más de {1} caracteres")]
         [Display(Name = "Apellido")]
         public string LastName { get; set; }
 

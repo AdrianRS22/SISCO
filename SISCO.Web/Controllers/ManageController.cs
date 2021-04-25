@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -214,6 +215,60 @@ namespace SISCO.Web.Controllers
         }
 
         //
+        // GET /Manage/ChangeUserDetails
+        public async Task<ActionResult> ChangeUserDetails(ManageMessageId? mensaje)
+        {
+            ViewBag.EstadoMensaje = mensaje == ManageMessageId.ChangeUserDetailsSuccess ? "Los datos del usuario se han modificado correctamente" : "";
+
+            var usuario = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            if(usuario != null)
+            {
+                var modeloUsuarioDetalle = new ChangeUserDetailsViewModel
+                {
+                    FirstName = usuario.FirstName,
+                    LastName = usuario.LastName,
+                    Email = usuario.Email
+                };
+                return View(modeloUsuarioDetalle);
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        //
+        // POST /Manage/ChangeUserDetails
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeUserDetails(ChangeUserDetailsViewModel modelo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(modelo);
+            }
+
+            var usuario = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            usuario.FirstName = modelo.FirstName;
+            usuario.LastName = modelo.LastName;
+
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            identity.RemoveClaim(identity.FindFirst("FullName"));
+            identity.AddClaim(new Claim("FullName", $"{modelo.FirstName} {modelo.LastName}"));
+
+            var authenticationManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
+            authenticationManager.AuthenticationResponseGrant = new AuthenticationResponseGrant(new ClaimsPrincipal(identity), new AuthenticationProperties() { IsPersistent = true });
+
+            var resultado = await UserManager.UpdateAsync(usuario);
+
+            if (resultado.Succeeded)
+            {
+                return RedirectToAction("ChangeUserDetails", new { Mensaje = ManageMessageId.ChangeUserDetailsSuccess });
+            }
+
+            AddErrors(resultado);
+            return View(modelo);
+        }
+
+        //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword(ManageMessageId? mensaje)
         {
@@ -378,6 +433,7 @@ namespace SISCO.Web.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            ChangeUserDetailsSuccess,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
