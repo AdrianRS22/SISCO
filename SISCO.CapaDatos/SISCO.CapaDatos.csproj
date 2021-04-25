@@ -93,6 +93,8 @@
       <DependentUpon>SISCO.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ProductoViewModel.cs" />
     <Compile Include="ViewModels\ProveedorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

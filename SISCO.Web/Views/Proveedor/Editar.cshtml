@@ -6,7 +6,7 @@
 }
 
 <div class="container-fluid mt-3">
-    <div class="card contenedorPrincipal">
+    <div class="card contenedorPrincipal p-3">
         <h2 class="text-center p-2">@ViewBag.Title</h2>
         <hr />
 
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextAreaFor(model => model.Direccion, 4, 20, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                     </div>
                 </div>

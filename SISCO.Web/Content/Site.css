@@ -26,3 +26,8 @@ a {
     color: #fff;
     background-color: #1A237E
 }
+
+textarea {
+    resize: none;
+    width: 100%;
+}

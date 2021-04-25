@@ -37,12 +37,20 @@ namespace SISCO.CapaLogica
             {
                 var proveedor = context.Proveedor.FirstOrDefault(x => x.Id.Equals(id));
 
-                if(proveedor != null)
+                if (proveedor != null)
                 {
-                    result = new ProveedorViewModel(proveedor);
+                    result = new ProveedorViewModel
+                    {
+                        Id = proveedor.Id,
+                        Nombre = proveedor.Nombre,
+                        Direccion = proveedor.Direccion,
+                        Correo = proveedor.Correo,
+                        Telefono = proveedor.Telefono,
+                        Activo = proveedor.Activo ? "Activo" : "Inactivo",
+                        FechaCreacion = proveedor.FechaCreacion
+                    };
                 }
             }
-
             return result;
         }
 
@@ -50,7 +58,16 @@ namespace SISCO.CapaLogica
         {
             using (var context = new SISCOContext())
             {
-                return context.Proveedor.Where(x => x.Activo).ToList().Select(x => new ProveedorViewModel(x));
+                return context.Proveedor.Where(x => x.Activo).ToList().Select(s => new ProveedorViewModel
+                {
+                    Id = s.Id,
+                    Nombre = s.Nombre,
+                    Direccion = s.Direccion,
+                    Correo = s.Correo,
+                    Telefono = s.Telefono,
+                    Activo = s.Activo ? "Activo" : "Inactivo",
+                    FechaCreacion = s.FechaCreacion
+                });
             }
         }
 
@@ -58,7 +75,16 @@ namespace SISCO.CapaLogica
         {
             using (var context = new SISCOContext())
             {
-                return context.Proveedor.ToList().Select(x => new ProveedorViewModel(x));
+                return context.Proveedor.ToList().Select(s => new ProveedorViewModel
+                {
+                    Id = s.Id,
+                    Nombre = s.Nombre,
+                    Direccion = s.Direccion,
+                    Correo = s.Correo,
+                    Telefono = s.Telefono,
+                    Activo = s.Activo ? "Activo" : "Inactivo",
+                    FechaCreacion = s.FechaCreacion
+                });
             }
         }
 

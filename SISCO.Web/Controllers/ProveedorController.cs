@@ -33,7 +33,7 @@ namespace SISCO.Web.Controllers
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError("", "Ocurrio un error al registrar");
+                    ModelState.AddModelError(string.Empty, "Ocurrio un error al agregar un proveedor");
                 }
             }
 
@@ -63,11 +63,18 @@ namespace SISCO.Web.Controllers
             {
                 try
                 {
-                    ProveedorBLL.Update(modelo);
-                    return RedirectToAction("Lista");
+                    if (modelo.IsValid())
+                    {
+                        ProveedorBLL.Update(modelo);
+                        return RedirectToAction("Lista");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Por favor selecciona el estado del proveedor");
+                    }
                 }catch(Exception)
                 {
-                    ModelState.AddModelError("", "Ocurrio un error al editar");
+                    ModelState.AddModelError(string.Empty, "Ocurrio un error al editar el proveedor");
                 }
             }
 
