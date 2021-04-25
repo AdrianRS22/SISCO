@@ -6,16 +6,14 @@
     {
         @Html.AntiForgeryToken()
 
-        <li class="nav-item dropdown">
-            <a class="list-group-item d-inline-block w-100" href="#" id="usuarioInfoDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bienvenido @(((ClaimsIdentity)User.Identity).FindFirst("FullName").Value)!
-            </a>
-            <div class="dropdown-menu" aria-labelledby="usuarioInfoDropDown">
-                @Html.ActionLink("Editar mi perfil", "ChangeUserDetails", "Manage", "", new { @class = "dropdown-item" })
-                @Html.ActionLink("Cambiar contraseña", "ChangePassword", "Manage", "", new { @class = "dropdown-item" })
-                <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-            </div>
-        </li>
+        <a class="list-group-item d-inline-block w-100" href="#" id="usuarioInfoDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Bienvenido @(((ClaimsIdentity)User.Identity).FindFirst("FullName").Value)!
+        </a>
+        <div class="dropdown-menu" aria-labelledby="usuarioInfoDropDown">
+            @Html.ActionLink("Editar mi perfil", "ChangeUserDetails", "Manage", "", new { @class = "dropdown-item" })
+            @Html.ActionLink("Cambiar contraseña", "ChangePassword", "Manage", "", new { @class = "dropdown-item" })
+            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+        </div>
     }
 }
 else

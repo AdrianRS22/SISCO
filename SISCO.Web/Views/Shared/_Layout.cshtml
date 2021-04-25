@@ -18,8 +18,16 @@
                     <span id="logo" class="text-center display-3 text-white mb-3">SISCO</span>
 
                     @Html.ActionLink("Home", "Index", "Home", areaPorDefecto, new { @class = "list-group-item d-inline-block" })
-                    @Html.ActionLink("About", "About", "Home", areaPorDefecto, new { @class = "list-group-item d-inline-block" })
-                    @Html.ActionLink("Contact", "Contact", "Home", areaPorDefecto, new { @class = "list-group-item d-inline-block" })
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a class="list-group-item d-inline-block w-100" href="#" id="administracionDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administración
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="administracionDropDown">
+                            @Html.ActionLink("Proveedores", "Lista", "Proveedor", areaPorDefecto, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Productos", "Lista", "Producto", areaPorDefecto, new { @class = "dropdown-item" })
+                        </div>
+                    }
                     <br />
                     @Html.Partial("_LoginPartial")
                 </div>
