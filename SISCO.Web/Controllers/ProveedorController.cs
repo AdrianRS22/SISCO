@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 using SISCO.CapaDatos.ViewModels;
@@ -12,13 +11,27 @@ namespace SISCO.Web.Controllers
 
         public ActionResult Lista()
         {
-            var listaProveedores = ProveedorBLL.FetchAll();
-            return View(listaProveedores);
+            if (User.IsInRole("Administrador"))
+            {
+                var listaProveedores = ProveedorBLL.FetchAll();
+                return View(listaProveedores);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
 
         public ActionResult Agregar()
         {
-            return View();
+            if (User.IsInRole("Administrador"))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
 
         [HttpPost]
@@ -39,18 +52,25 @@ namespace SISCO.Web.Controllers
 
         public ActionResult Editar(Guid Id)
         {
-            if(Id == null)
+            if (User.IsInRole("Administrador"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var proveedor = ProveedorBLL.Fetch(Id);
+
+                if (proveedor == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(proveedor);
             }
-
-            var proveedor = ProveedorBLL.Fetch(Id);
-
-            if(proveedor == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
-            return View(proveedor);
         }
 
         [HttpPost]

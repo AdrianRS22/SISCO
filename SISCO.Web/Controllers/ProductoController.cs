@@ -22,7 +22,7 @@ namespace SISCO.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home", "");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
         }
 
@@ -36,7 +36,7 @@ namespace SISCO.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home", "");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
 
         }
@@ -111,7 +111,7 @@ namespace SISCO.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home", "");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
 
         }

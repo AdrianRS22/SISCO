@@ -11,8 +11,15 @@ namespace SISCO.Web.Controllers
     {
         public ActionResult Lista()
         {
-            var listaOrdenes = OrdenBLL.Fetch();
-            return View(listaOrdenes);
+            if (User.IsInRole("Administrador"))
+            {
+                var listaOrdenes = OrdenBLL.Fetch();
+                return View(listaOrdenes);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
 
         public ActionResult MisOrdenes()
@@ -24,19 +31,26 @@ namespace SISCO.Web.Controllers
 
         public ActionResult Editar(Guid Id)
         {
-            if (Id == null)
+            if (User.IsInRole("Administrador"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var editarOrdenModelo = OrdenBLL.FetchEditOrdenModel(Id);
+
+                if (editarOrdenModelo == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(editarOrdenModelo);
             }
-
-            var editarOrdenModelo = OrdenBLL.FetchEditOrdenModel(Id);
-
-            if (editarOrdenModelo == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
-
-            return View(editarOrdenModelo);
         }
 
         [HttpPost]
@@ -81,8 +95,15 @@ namespace SISCO.Web.Controllers
 
         public ActionResult Eliminar(Guid Id)
         {
-            OrdenBLL.Eliminar(Id);
-            return RedirectToAction("Lista");
+            if (User.IsInRole("Administrador"))
+            {
+                OrdenBLL.Eliminar(Id);
+                return RedirectToAction("Lista");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
     }
 }
