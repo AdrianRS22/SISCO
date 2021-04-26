@@ -254,6 +254,7 @@
     <Content Include="Views\Producto\Agregar.cshtml" />
     <Content Include="Views\Producto\Editar.cshtml" />
     <Content Include="Views\Manage\ChangeUserDetails.cshtml" />
+    <Content Include="Views\Producto\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

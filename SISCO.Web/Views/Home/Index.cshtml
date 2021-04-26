@@ -11,20 +11,20 @@
 <div id="contenido-productos">
     @foreach (var item in Model)
     {
-    <article class="producto">
-        <div class="image-wrap">
-            @if (item.Imagen != null)
-            {
-                @Html.Image(item.Imagen)
-            }
-            else
-            {
-                <img src="~/Content/images/sinimagen.jpg" />
-            }
-        </div>
-        <div class="productdetails_button">
-            <a href="#" class="btn btn-primary">Ver detalles</a>
-        </div>
-    </article>
+        <article class="producto">
+            <div class="image-wrap">
+                @if (item.Imagen != null)
+                {
+                    @Html.Image(item.Imagen)
+                }
+                else
+                {
+                    <img src="~/Content/images/sinimagen.jpg" />
+                }
+            </div>
+            <div class="productdetails_button">
+                @Html.ActionLink("Ver Detalles", "Detalle", "Producto", new { id = item.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </article>
     }
 </div>

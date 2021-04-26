@@ -1,0 +1,33 @@
+﻿@model SISCO.CapaDatos.ViewModels.ProductoViewModel
+@using SISCO.Web.Extensions
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="detalle_producto" class="container_sombreado">
+    <h3 class="text-center">@Model.Nombre</h3>
+    <hr>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 producto">
+            @if (Model.Imagen != null)
+            {
+                @Html.Image(Model.Imagen)
+            }
+            else
+            {
+                <img src="~/Content/images/sinimagen.jpg" />
+            }
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pr-4">
+            <h3 class="text-center">Descripción</h3>
+            <p class="text-justify">@Model.Descripcion</p>
+
+            <strong>Precio</strong>
+            <p>@Model.Precio</p>
+
+            <a class="btn btn-primary">Comprar</a>
+        </div>
+    </div>
+</section>
+

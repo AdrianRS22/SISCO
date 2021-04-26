@@ -53,6 +53,23 @@ namespace SISCO.Web.Controllers
             return View(modelo);
         }
 
+        public ActionResult Detalle(Guid Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var producto = ProductoBLL.Fetch(Id);
+
+            if (producto == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(producto);
+        }
+
         public ActionResult Editar(Guid Id)
         {
             if (Id == null)
