@@ -1,0 +1,64 @@
+﻿@model SISCO.CapaDatos.ViewModels.ProductoCompraViewModel
+@{
+    ViewBag.Title = "Comprar Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center p-2">@ViewBag.Title</h2>
+<hr />
+
+<div class="container-fluid">
+    @using (Html.BeginForm("Comprar", "Producto", FormMethod.Post))
+    {
+
+        if (ViewBag.EstadoCompra != string.Empty && ViewBag.EstadoCompra != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.EstadoCompra
+            </div>
+        }
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Provincia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Provincia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Provincia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Canton, htmlAttributes: new { @class = "control-label col-md-2" });
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Canton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Canton, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Direccion, 4, 20, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Comprar" class="btn btn-success" />
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

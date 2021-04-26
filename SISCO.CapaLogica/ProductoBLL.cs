@@ -94,6 +94,14 @@ namespace SISCO.CapaLogica
             }
         }
 
+        public static decimal FetchPrecio(Guid productoId)
+        {
+            using(var context = new SISCOContext())
+            {
+                return context.Producto.FirstOrDefault(x => x.Id == productoId).Precio;
+            }
+        }
+
         public static List<ProductoViewModel> FetchAll()
         {
             using (var context = new SISCOContext())
@@ -134,6 +142,38 @@ namespace SISCO.CapaLogica
                 producto.Precio = modelo.Precio;
                 producto.Activo = modelo.Activo.Equals("Activo");
                 producto.Imagen = modelo.Imagen;
+
+                context.SaveChanges();
+            }
+        }
+
+        public static void Comprar(ProductoCompraViewModel modelo, Guid productoId, string usuarioId)
+        {
+            using(var context = new SISCOContext())
+            {
+                var precioProducto = FetchPrecio(productoId);
+
+                var orden = new Orden
+                {
+                    Id = Guid.NewGuid(),
+                    UsuarioId = usuarioId,
+                    Provincia = modelo.Provincia,
+                    Canton = modelo.Canton,
+                    Direccion = modelo.Direccion,
+                    Costo = precioProducto,
+                    Estado = "En progreso",
+                    FechaCreacion = DateTime.Now
+                };
+                context.Orden.Add(orden);
+
+                var ordenProducto = new OrdenXProducto
+                {
+                    Id = Guid.NewGuid(),
+                    OrdenId = orden.Id,
+                    ProductoId = productoId,
+                    Cantidad = modelo.Cantidad
+                };
+                context.OrdenXProducto.Add(ordenProducto);
 
                 context.SaveChanges();
             }

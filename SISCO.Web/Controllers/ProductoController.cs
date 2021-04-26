@@ -1,10 +1,13 @@
-﻿using SISCO.CapaDatos.ViewModels;
+﻿using Microsoft.AspNet.Identity.Owin;
+using SISCO.CapaDatos.ViewModels;
 using SISCO.CapaLogica;
 using System;
 using System.IO;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+
 
 namespace SISCO.Web.Controllers
 {
@@ -124,6 +127,47 @@ namespace SISCO.Web.Controllers
             ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre", modelo.Id);
 
             return View(modelo);
+        }
+
+        public ActionResult Comprar(EstadoCompra? estado, Guid Id)
+        {
+            ViewBag.EstadoCompra = estado == EstadoCompra.COMPRADO ? "La compra se ha realizado correctamente" : "";
+
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Comprar(Guid Id, ProductoCompraViewModel modelo)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var usuarioId = User.Identity.GetUserId();
+                    ProductoBLL.Comprar(modelo, productoId: Id, usuarioId: usuarioId);
+                    return RedirectToAction("Comprar", new { Estado = EstadoCompra.COMPRADO });
+                }
+                catch(Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "Ha ocurrido un error a la hora de comprar el producto");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Por favor verifica los campos para la compra del producto");
+            }
+            return View();
+        }
+
+        public enum EstadoCompra
+        {
+            COMPRADO,
+            ERROR
         }
     }
 }

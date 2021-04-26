@@ -23,7 +23,6 @@ GO
 
 CREATE TABLE [Orden] (
   [Id] UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-  [NumeroOrden] varchar(20) NOT NULL,
   [Provincia] varchar(50) NOT NULL,
   [Canton] varchar(50) NOT NULL,
   [Direccion] text NOT NULL,

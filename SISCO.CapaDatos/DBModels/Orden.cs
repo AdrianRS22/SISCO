@@ -21,7 +21,6 @@ namespace SISCO.CapaDatos.DBModels
         }
     
         public System.Guid Id { get; set; }
-        public string NumeroOrden { get; set; }
         public string Provincia { get; set; }
         public string Canton { get; set; }
         public string Direccion { get; set; }

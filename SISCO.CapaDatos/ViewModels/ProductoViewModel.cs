@@ -19,7 +19,7 @@ namespace SISCO.CapaDatos.ViewModels
         [MaxLength(100, ErrorMessage = "El nombre no puede tener más de {1} caracteres")]
         public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "La dirección es requerida")]
+        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "El correo es requerido")]

@@ -73,7 +73,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="NumeroOrden" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Provincia" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Canton" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Direccion" Type="text" Nullable="false" />
@@ -335,7 +334,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="NumeroOrden" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Canton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
@@ -571,7 +569,6 @@
             <EntityTypeMapping TypeName="SISCOModel.Orden">
               <MappingFragment StoreEntitySet="Orden">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NumeroOrden" ColumnName="NumeroOrden" />
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
                 <ScalarProperty Name="Canton" ColumnName="Canton" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
