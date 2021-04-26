@@ -18,6 +18,8 @@
                     <span id="logo" class="text-center display-3 text-white mb-3">SISCO</span>
 
                     @Html.ActionLink("Principal", "Index", "Home", areaPorDefecto, new { @class = "list-group-item d-inline-block" })
+                    @Html.ActionLink("Acerca de", "About", "Home", areaPorDefecto, new { @class = "list-group-item d-inline-block" })
+
                     @if (User.IsInRole("Administrador"))
                     {
                         <a class="list-group-item d-inline-block w-100" href="#" id="administracionDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
