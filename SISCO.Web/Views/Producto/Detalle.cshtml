@@ -24,7 +24,7 @@
             <p class="text-justify">@Model.Descripcion</p>
 
             <strong>Precio</strong>
-            <p>@Model.Precio</p>
+            <p>@Model.Precio.ConvertirPrecio()</p>
 
             @Html.ActionLink("Comprar", "Comprar", "Producto", new { id = Model.Id }, new { @class = "btn btn-primary" })
         </div>

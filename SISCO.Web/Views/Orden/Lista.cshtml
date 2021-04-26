@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SISCO.CapaDatos.ViewModels.OrdenViewModel>
+
+@{
+    ViewBag.Title = "Lista de ordenes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center p-2">@ViewBag.Title</h2>
+<hr />
+
+<div>
+    <table class="table table-striped table-bordered p-3" width="100%">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrdenId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Provincia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Canton)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaCreacion)
+                </th>
+                <th colspan="3">
+                    Acción
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrdenId)
+                    </td>
+                    <td> @Html.DisplayFor(modelItem => item.Provincia)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Canton)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCreacion)
+                    </td>
+                    <td>
+                        <div class="dropdown show">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Acción
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                @Html.ActionLink("Editar", "Editar", new { id = item.OrdenId }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.OrdenId }, new { @class = "dropdown-item" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -170,9 +170,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -256,6 +258,8 @@
     <Content Include="Views\Manage\ChangeUserDetails.cshtml" />
     <Content Include="Views\Producto\Detalle.cshtml" />
     <Content Include="Views\Producto\Comprar.cshtml" />
+    <Content Include="Views\Orden\Lista.cshtml" />
+    <Content Include="Views\Orden\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

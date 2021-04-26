@@ -94,9 +94,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\ProductoCompraViewModel.cs" />
-    <Compile Include="ViewModels\ProductoViewModel.cs" />
-    <Compile Include="ViewModels\ProveedorViewModel.cs" />
+    <Compile Include="ViewModels\Orden\DetalleOrdenViewModel.cs" />
+    <Compile Include="ViewModels\Orden\EditarOrdenViewModel.cs" />
+    <Compile Include="ViewModels\Orden\OrdenViewModel.cs" />
+    <Compile Include="ViewModels\Producto\ProductoCompraViewModel.cs" />
+    <Compile Include="ViewModels\Producto\ProductoViewModel.cs" />
+    <Compile Include="ViewModels\Proveedor\ProveedorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="basedatos.sql" />

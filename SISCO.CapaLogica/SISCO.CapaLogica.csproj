@@ -48,9 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductoBLL.cs" />
+    <Compile Include="Clases\OrdenBLL.cs" />
+    <Compile Include="Clases\ProductoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProveedorBLL.cs" />
+    <Compile Include="Clases\ProveedorBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SISCO.CapaDatos\SISCO.CapaDatos.csproj">
