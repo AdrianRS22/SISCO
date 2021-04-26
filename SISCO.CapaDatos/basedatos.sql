@@ -16,7 +16,7 @@ CREATE TABLE [Producto] (
   [Descripcion] text NULL,
   [Precio] decimal(11,2) NOT NULL,
   [Activo] bit DEFAULT 1 NOT NULL,
-  [Imagen] varbinary(max) NOT NULL,
+  [Imagen] varbinary(max) NULL,
   [FechaCreacion] datetime DEFAULT GETDATE() NOT NULL
 )
 GO

@@ -64,12 +64,17 @@
         <div class="form-group">
             @Html.Label("Imagen Actual", new { @class = "control-label col-md-2" })
             <div class="col-md-6 producto">
-                @if (Model.Imagen != null)
-                {
-                    <div class="image-wrap">
+                <div class="image-wrap">
+                    @if (Model.Imagen != null)
+                    {
                         @Html.Image(Model.Imagen)
-                    </div>
-                }
+                    }
+                    else
+                    {
+                        <img src="~/Content/images/sinimagen.jpg"/>
+                    }
+
+                </div>
             </div>
         </div>
 

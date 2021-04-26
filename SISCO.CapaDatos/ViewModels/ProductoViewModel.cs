@@ -40,7 +40,6 @@ namespace SISCO.CapaDatos.ViewModels
             bool resultado = true;
 
             if (resultado && Activo == null) return false;
-            if (resultado && Imagen == null) return false;
 
             return resultado;
         }

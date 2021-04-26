@@ -37,25 +37,20 @@ namespace SISCO.Web.Controllers
                 modelo.Imagen = imagenData;
             }
 
-
-            if (modelo.IsValid())
+            try
             {
-                try
-                {
-                    ProductoBLL.Add(modelo);
-                    return RedirectToAction("Lista");
-                }
-                catch (Exception)
-                {
-                    ModelState.AddModelError(string.Empty, "Ocurrio un error al agregar el producto");
-                }
+                ProductoBLL.Add(modelo);
+                return RedirectToAction("Lista");
             }
-            else
+            catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "Por favor verifica que se ha seleccionado un estado o escogido una imagen");
+                ModelState.AddModelError(string.Empty, "Ocurrio un error al agregar el producto");
             }
 
-            return View();
+            var listaProveedor = ProveedorBLL.Fetch();
+            ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre", modelo.Id);
+
+            return View(modelo);
         }
 
         public ActionResult Editar(Guid Id)
@@ -105,7 +100,7 @@ namespace SISCO.Web.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Por favor verifica que se ha seleccionado un estado o escogido una imagen");
+                ModelState.AddModelError(string.Empty, "Por favor verifica que se ha seleccionado un estado");
             }
 
             var listaProveedor = ProveedorBLL.Fetch();
