@@ -15,15 +15,30 @@ namespace SISCO.Web.Controllers
     {
         public ActionResult Lista()
         {
-            var listaProductos = ProductoBLL.FetchAll();
-            return View(listaProductos);
+            if (User.IsInRole("Administrador"))
+            {
+                var listaProductos = ProductoBLL.FetchAll();
+                return View(listaProductos);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", "");
+            }
         }
 
         public ActionResult Agregar()
         {
-            var listaProveedor = ProveedorBLL.Fetch();
-            ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre");
-            return View();
+            if (User.IsInRole("Administrador"))
+            {
+                var listaProveedor = ProveedorBLL.Fetch();
+                ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", "");
+            }
+
         }
 
         [HttpPost]
@@ -71,31 +86,39 @@ namespace SISCO.Web.Controllers
             }
 
             return View(producto);
+
         }
 
         public ActionResult Editar(Guid Id)
         {
-            if (Id == null)
+            if (User.IsInRole("Administrador"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var producto = ProductoBLL.Fetch(Id);
+
+                if (producto == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var listaProveedor = ProveedorBLL.Fetch();
+                ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre", producto.Id);
+                return View(producto);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", "");
             }
 
-            var producto = ProductoBLL.Fetch(Id);
-
-            if (producto == null)
-            {
-                return HttpNotFound();
-            }
-
-            var listaProveedor = ProveedorBLL.Fetch();
-            ViewData["listaProveedor"] = new SelectList(listaProveedor, "Id", "Nombre", producto.Id);
-            return View(producto);
         }
 
         [HttpPost]
         public ActionResult Editar(ProductoViewModel modelo, HttpPostedFileBase imagenProducto)
         {
-
             if (imagenProducto != null && imagenProducto.ContentLength > 0)
             {
                 byte[] imagenData = null;
