@@ -63,6 +63,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 @Html.ActionLink("Editar", "Editar", new { id = item.OrdenId }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Ver Detalles", "Detalle", new { id = item.OrdenId }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("Eliminar", "Eliminar", new { id = item.OrdenId }, new { @class = "dropdown-item" })
                             </div>
                         </div>

@@ -49,6 +49,38 @@ namespace SISCO.CapaLogica
             return resultado;
         }
 
+        public static DetalleOrdenViewModel FetchOrdenDetail(Guid ordenId)
+        {
+            DetalleOrdenViewModel resultado = null;
+
+            using(var context = new SISCOContext())
+            {
+                var ordenXProducto = context.OrdenXProducto
+                    .Include("Orden")
+                    .Include("Producto")
+                    .FirstOrDefault(x => x.OrdenId == ordenId);
+
+                if(ordenXProducto != null)
+                {
+                    resultado = new DetalleOrdenViewModel
+                    {
+                        NumeroOrden = ordenXProducto.OrdenId,
+                        Provincia = ordenXProducto.Orden.Provincia,
+                        Canton = ordenXProducto.Orden.Canton,
+                        Direccion = ordenXProducto.Orden.Direccion,
+                        Estado = ordenXProducto.Orden.Estado,
+                        CodigoProducto = ordenXProducto.ProductoId,
+                        NombreProducto = ordenXProducto.Producto.Nombre,
+                        CostoProducto = ordenXProducto.Orden.Costo,
+                        Cantidad = ordenXProducto.Cantidad,
+                        CostoTotal = ordenXProducto.Orden.Costo * ordenXProducto.Cantidad
+                    };
+                }
+            }
+
+            return resultado;
+        }
+
         public static void Update(Guid ordenId, EditarOrdenViewModel modelo)
         {
             using(var context = new SISCOContext())

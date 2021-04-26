@@ -54,6 +54,23 @@ namespace SISCO.Web.Controllers
             return View(modelo);
         }
 
+        public ActionResult Detalle(Guid Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var detalleOrden = OrdenBLL.FetchOrdenDetail(Id);
+
+            if(detalleOrden == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(detalleOrden);
+        }
+
         public ActionResult Eliminar(Guid Id)
         {
             OrdenBLL.Eliminar(Id);

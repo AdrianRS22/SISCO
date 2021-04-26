@@ -260,6 +260,7 @@
     <Content Include="Views\Producto\Comprar.cshtml" />
     <Content Include="Views\Orden\Lista.cshtml" />
     <Content Include="Views\Orden\Editar.cshtml" />
+    <Content Include="Views\Orden\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

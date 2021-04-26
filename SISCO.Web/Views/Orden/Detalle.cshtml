@@ -1,0 +1,112 @@
+﻿@model SISCO.CapaDatos.ViewModels.DetalleOrdenViewModel
+@using SISCO.Web.Extensions 
+@{
+    ViewBag.Title = "Detalles de la orden";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center p-2">@ViewBag.Title</h2>
+<hr />
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6">
+            <label>Número de orden: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.NumeroOrden</span>
+        </div>
+    </div>
+    <hr />
+
+    <h5 class="text-center">Detalles del envío</h5>
+    <hr />
+
+    <div class="row">
+        <div class="col-6">
+            <label>Provincia: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.Provincia</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Cantón: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.Canton</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Dirección: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.Direccion</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Estado: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.Estado</span>
+        </div>
+    </div>
+    <hr />
+
+    <h5 class="text-center">Detalles de la compra</h5>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <label>Código del Producto: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.CodigoProducto</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Nombre del producto: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.NombreProducto</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Costo del producto: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.CostoProducto.ConvertirPrecio()</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Cantidad: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.Cantidad</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>Costo Total: </label>
+        </div>
+        <div class="col-6">
+            <span>@Model.CostoTotal.ConvertirPrecio()</span>
+        </div>
+    </div>
+    <hr />
+
+</div>
+
