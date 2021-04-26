@@ -10,6 +10,7 @@
             Bienvenido @(((ClaimsIdentity)User.Identity).FindFirst("FullName").Value)!
         </a>
         <div class="dropdown-menu" aria-labelledby="usuarioInfoDropDown">
+            @Html.ActionLink("Mis ordenes", "MisOrdenes", "Orden", "", new { @class = "dropdown-item" })
             @Html.ActionLink("Editar mi perfil", "ChangeUserDetails", "Manage", "", new { @class = "dropdown-item" })
             @Html.ActionLink("Cambiar contraseña", "ChangePassword", "Manage", "", new { @class = "dropdown-item" })
             <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>

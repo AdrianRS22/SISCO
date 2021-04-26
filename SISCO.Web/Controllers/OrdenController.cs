@@ -3,6 +3,7 @@ using SISCO.CapaLogica;
 using System;
 using System.Net;
 using SISCO.CapaDatos.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace SISCO.Web.Controllers
 {
@@ -11,6 +12,13 @@ namespace SISCO.Web.Controllers
         public ActionResult Lista()
         {
             var listaOrdenes = OrdenBLL.Fetch();
+            return View(listaOrdenes);
+        }
+
+        public ActionResult MisOrdenes()
+        {
+            var usuarioId = User.Identity.GetUserId();
+            var listaOrdenes = OrdenBLL.Fetch(usuarioId);
             return View(listaOrdenes);
         }
 

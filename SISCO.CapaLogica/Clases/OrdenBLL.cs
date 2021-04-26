@@ -25,6 +25,24 @@ namespace SISCO.CapaLogica
             }
         }
 
+        public static List<OrdenViewModel> Fetch(string usuarioId)
+        {
+            using (var context = new SISCOContext())
+            {
+                return context.Orden
+                    .Where(x => x.UsuarioId == usuarioId)
+                    .Select(s => new OrdenViewModel
+                    {
+                        OrdenId = s.Id,
+                        Provincia = s.Provincia,
+                        Canton = s.Canton,
+                        Direccion = s.Direccion,
+                        Estado = s.Estado,
+                        FechaCreacion = s.FechaCreacion
+                    }).ToList();
+            }
+        }
+
         public static EditarOrdenViewModel FetchEditOrdenModel(Guid ordenId)
         {
             EditarOrdenViewModel resultado = null;

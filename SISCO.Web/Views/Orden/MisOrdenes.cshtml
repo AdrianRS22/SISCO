@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SISCO.CapaDatos.ViewModels.OrdenViewModel>
 
 @{
-    ViewBag.Title = "Lista de ordenes";
+    ViewBag.Title = "Mis Ordenes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,6 +10,7 @@
 
 <div>
     <table class="table table-striped table-bordered p-3" width="100%">
+
         <thead>
             <tr>
                 <th>
@@ -56,21 +57,11 @@
                         @Html.DisplayFor(modelItem => item.FechaCreacion)
                     </td>
                     <td>
-                        <div class="dropdown show">
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Acción
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                @Html.ActionLink("Editar", "Editar", new { id = item.OrdenId }, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Ver Detalles", "Detalle", new { id = item.OrdenId }, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.OrdenId }, new { @class = "dropdown-item" })
-                            </div>
-                        </div>
+                        @Html.ActionLink("Ver más detalles", "Detalle", new { id = item.OrdenId }, new { @class = "btn btn-primary" })
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
 
