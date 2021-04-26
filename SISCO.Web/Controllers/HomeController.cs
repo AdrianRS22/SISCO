@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using SISCO.CapaLogica;
 
 namespace SISCO.Web.Controllers
 {
@@ -7,7 +8,8 @@ namespace SISCO.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var listaProductos = ProductoBLL.Fetch();
+            return View(listaProductos);
         }
 
         public ActionResult About()
