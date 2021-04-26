@@ -28,6 +28,9 @@ namespace SISCO.CapaDatos.ViewModels
         [Display(Name = "Estado")]
         public string Activo { get; set; }
 
+        [Required(ErrorMessage = "La imagen es requerida")]
+        public byte[] Imagen { get; set; }
+
         [Display(Name = "Fecha de Creación")]
         public DateTime FechaCreacion { get; set; }
 
@@ -37,6 +40,7 @@ namespace SISCO.CapaDatos.ViewModels
             bool resultado = true;
 
             if (resultado && Activo == null) return false;
+            if (resultado && Imagen == null) return false;
 
             return resultado;
         }

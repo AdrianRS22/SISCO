@@ -46,7 +46,8 @@ textarea {
     #sidebar .list-group {
         min-width: 400px;
         background-color: #1A237E;
-        min-height: 100vh;
+        min-height: 300vh;
+        height: 100% !important;
     }
 
     #sidebar i {
@@ -162,3 +163,29 @@ textarea {
         -webkit-transition-timing-function: ease-out;
         transition-timing-function: ease-out;
     }
+
+#contenido-productos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-basis: 100%;
+}
+
+.producto {
+    flex-grow: 1;
+    flex-basis: 200px;
+    margin: 0px 20px 25px 20px;
+}
+
+.producto img {
+    width: 100%;
+    height: 100%;
+}
+
+.image-wrap {
+    height: 180px;
+}
+
+#detalle_producto {
+    min-height: 500px;
+}

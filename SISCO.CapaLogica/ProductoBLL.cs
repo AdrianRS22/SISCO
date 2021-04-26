@@ -22,6 +22,7 @@ namespace SISCO.CapaLogica
                     Descripcion = modelo.Descripcion,
                     Precio = modelo.Precio,
                     Activo = true,
+                    Imagen = modelo.Imagen,
                     FechaCreacion = DateTime.Now
                 };
                 context.Producto.Add(producto);
@@ -45,6 +46,7 @@ namespace SISCO.CapaLogica
                         Descripcion = producto.Descripcion,
                         Precio = producto.Precio,
                         Activo = producto.Activo ? "Activo" : "Inactivo",
+                        Imagen = producto.Imagen,
                         FechaCreacion = producto.FechaCreacion
                     };
 
@@ -64,17 +66,18 @@ namespace SISCO.CapaLogica
             return result;
         }
 
-        public static IEnumerable<ProductoViewModel> Fetch()
+        public static List<ProductoViewModel> Fetch()
         {
             using (var context = new SISCOContext())
             {
-                return context.Producto.Include("Proveedor").Where(x => x.Activo).ToList().Select(s => new ProductoViewModel
+                return context.Producto.Include("Proveedor").Where(x => x.Activo).Select(s => new ProductoViewModel
                 {
                     Id = s.Id,
                     Nombre = s.Nombre,
                     Descripcion = s.Descripcion,
                     Precio = s.Precio,
                     Activo = s.Activo ? "Activo" : "Inactivo",
+                    Imagen = s.Imagen,
                     FechaCreacion = s.FechaCreacion,
 
                     Proveedor = new ProveedorViewModel
@@ -102,6 +105,7 @@ namespace SISCO.CapaLogica
                     Descripcion = s.Descripcion,
                     Precio = s.Precio,
                     Activo = s.Activo ? "Activo" : "Inactivo",
+                    Imagen = s.Imagen,
                     FechaCreacion = s.FechaCreacion,
 
                     Proveedor = new ProveedorViewModel
@@ -129,10 +133,10 @@ namespace SISCO.CapaLogica
                 producto.Descripcion = modelo.Descripcion;
                 producto.Precio = modelo.Precio;
                 producto.Activo = modelo.Activo.Equals("Activo");
+                producto.Imagen = modelo.Imagen;
 
                 context.SaveChanges();
             }
         }
-
     }
 }

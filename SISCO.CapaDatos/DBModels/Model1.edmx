@@ -101,6 +101,7 @@
           <Property Name="Descripcion" Type="text" />
           <Property Name="Precio" Type="decimal" Precision="11" Scale="2" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Imagen" Type="varbinary(max)" Nullable="false" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
@@ -115,7 +116,7 @@
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Orden__UsuarioId__02C769E9">
+        <Association Name="FK__Orden__UsuarioId__19AACF41">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,7 +128,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Orden__00DF2177">
+        <Association Name="FK__OrdenXPro__Orden__17C286CF">
           <End Role="Orden" Type="Self.Orden" Multiplicity="1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +140,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Produ__01D345B0">
+        <Association Name="FK__OrdenXPro__Produ__18B6AB08">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__Provee__7FEAFD3E">
+        <Association Name="FK__Producto__Provee__16CE6296">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -230,19 +231,19 @@
           <EntitySet Name="OrdenXProducto" EntityType="Self.OrdenXProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Orden__UsuarioId__02C769E9" Association="Self.FK__Orden__UsuarioId__02C769E9">
+          <AssociationSet Name="FK__Orden__UsuarioId__19AACF41" Association="Self.FK__Orden__UsuarioId__19AACF41">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Orden" EntitySet="Orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Orden__00DF2177" Association="Self.FK__OrdenXPro__Orden__00DF2177">
+          <AssociationSet Name="FK__OrdenXPro__Orden__17C286CF" Association="Self.FK__OrdenXPro__Orden__17C286CF">
             <End Role="Orden" EntitySet="Orden" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Produ__01D345B0" Association="Self.FK__OrdenXPro__Produ__01D345B0">
+          <AssociationSet Name="FK__OrdenXPro__Produ__18B6AB08" Association="Self.FK__OrdenXPro__Produ__18B6AB08">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__Provee__7FEAFD3E" Association="Self.FK__Producto__Provee__7FEAFD3E">
+          <AssociationSet Name="FK__Producto__Provee__16CE6296" Association="Self.FK__Producto__Provee__16CE6296">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
@@ -327,7 +328,7 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__UsuarioId__02C769E9" FromRole="AspNetUsers" ToRole="Orden" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__UsuarioId__19AACF41" FromRole="AspNetUsers" ToRole="Orden" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Orden">
@@ -343,8 +344,8 @@
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UsuarioId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Orden__UsuarioId__02C769E9" FromRole="Orden" ToRole="AspNetUsers" />
-          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Orden__00DF2177" FromRole="Orden" ToRole="OrdenXProducto" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Orden__UsuarioId__19AACF41" FromRole="Orden" ToRole="AspNetUsers" />
+          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Orden__17C286CF" FromRole="Orden" ToRole="OrdenXProducto" />
         </EntityType>
         <EntityType Name="OrdenXProducto">
           <Key>
@@ -354,8 +355,8 @@
           <Property Name="OrdenId" Type="Guid" Nullable="false" />
           <Property Name="ProductoId" Type="Guid" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Orden" Relationship="Self.FK__OrdenXPro__Orden__00DF2177" FromRole="OrdenXProducto" ToRole="Orden" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__OrdenXPro__Produ__01D345B0" FromRole="OrdenXProducto" ToRole="Producto" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__OrdenXPro__Orden__17C286CF" FromRole="OrdenXProducto" ToRole="Orden" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__OrdenXPro__Produ__18B6AB08" FromRole="OrdenXProducto" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -367,9 +368,10 @@
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Produ__01D345B0" FromRole="Producto" ToRole="OrdenXProducto" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Producto__Provee__7FEAFD3E" FromRole="Producto" ToRole="Proveedor" />
+          <NavigationProperty Name="OrdenXProducto" Relationship="Self.FK__OrdenXPro__Produ__18B6AB08" FromRole="Producto" ToRole="OrdenXProducto" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Producto__Provee__16CE6296" FromRole="Producto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -382,7 +384,7 @@
           <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Provee__7FEAFD3E" FromRole="Proveedor" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Provee__16CE6296" FromRole="Proveedor" ToRole="Producto" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -412,7 +414,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orden__UsuarioId__02C769E9">
+        <Association Name="FK__Orden__UsuarioId__19AACF41">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -424,7 +426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Orden__00DF2177">
+        <Association Name="FK__OrdenXPro__Orden__17C286CF">
           <End Role="Orden" Type="Self.Orden" Multiplicity="1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -436,7 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenXPro__Produ__01D345B0">
+        <Association Name="FK__OrdenXPro__Produ__18B6AB08">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="OrdenXProducto" Type="Self.OrdenXProducto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -448,7 +450,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__Provee__7FEAFD3E">
+        <Association Name="FK__Producto__Provee__16CE6296">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -482,19 +484,19 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orden__UsuarioId__02C769E9" Association="Self.FK__Orden__UsuarioId__02C769E9">
+          <AssociationSet Name="FK__Orden__UsuarioId__19AACF41" Association="Self.FK__Orden__UsuarioId__19AACF41">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Orden" EntitySet="Orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Orden__00DF2177" Association="Self.FK__OrdenXPro__Orden__00DF2177">
+          <AssociationSet Name="FK__OrdenXPro__Orden__17C286CF" Association="Self.FK__OrdenXPro__Orden__17C286CF">
             <End Role="Orden" EntitySet="Orden" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenXPro__Produ__01D345B0" Association="Self.FK__OrdenXPro__Produ__01D345B0">
+          <AssociationSet Name="FK__OrdenXPro__Produ__18B6AB08" Association="Self.FK__OrdenXPro__Produ__18B6AB08">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="OrdenXProducto" EntitySet="OrdenXProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__Provee__7FEAFD3E" Association="Self.FK__Producto__Provee__7FEAFD3E">
+          <AssociationSet Name="FK__Producto__Provee__16CE6296" Association="Self.FK__Producto__Provee__16CE6296">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
@@ -600,6 +602,7 @@
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
               </MappingFragment>
             </EntityTypeMapping>

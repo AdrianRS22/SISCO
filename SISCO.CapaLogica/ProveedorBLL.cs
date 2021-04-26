@@ -54,11 +54,11 @@ namespace SISCO.CapaLogica
             return result;
         }
 
-        public static IEnumerable<ProveedorViewModel> Fetch()
+        public static List<ProveedorViewModel> Fetch()
         {
             using (var context = new SISCOContext())
             {
-                return context.Proveedor.Where(x => x.Activo).ToList().Select(s => new ProveedorViewModel
+                return context.Proveedor.Where(x => x.Activo).Select(s => new ProveedorViewModel
                 {
                     Id = s.Id,
                     Nombre = s.Nombre,
@@ -67,15 +67,15 @@ namespace SISCO.CapaLogica
                     Telefono = s.Telefono,
                     Activo = s.Activo ? "Activo" : "Inactivo",
                     FechaCreacion = s.FechaCreacion
-                });
+                }).ToList();
             }
         }
 
-        public static IEnumerable<ProveedorViewModel> FetchAll()
+        public static List<ProveedorViewModel> FetchAll()
         {
             using (var context = new SISCOContext())
             {
-                return context.Proveedor.ToList().Select(s => new ProveedorViewModel
+                return context.Proveedor.Select(s => new ProveedorViewModel
                 {
                     Id = s.Id,
                     Nombre = s.Nombre,
@@ -84,7 +84,7 @@ namespace SISCO.CapaLogica
                     Telefono = s.Telefono,
                     Activo = s.Activo ? "Activo" : "Inactivo",
                     FechaCreacion = s.FechaCreacion
-                });
+                }).ToList();
             }
         }
 
